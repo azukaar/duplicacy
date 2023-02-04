@@ -177,6 +177,7 @@ func logf(level int, logID string, format string, v ...interface{}) {
 	}
 
 	if level > WARN {
+		fmt.Printf("PANIC was thrown. Exiting.")
 		panic(Exception{
 			Level:   level,
 			LogID:   logID,
