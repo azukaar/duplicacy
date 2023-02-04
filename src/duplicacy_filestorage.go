@@ -205,6 +205,9 @@ func (storage *FileStorage) UploadFile(threadIndex int, filePath string, content
 		return err
 	}
 
+	// give time for RClone to release lock and update cache
+	time.Sleep(1)
+
 	err = os.Rename(temporaryFile, fullPath)
 	if err != nil {
 

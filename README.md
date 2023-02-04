@@ -2,6 +2,10 @@
 
 Duplicacy is a new generation cross-platform cloud backup tool based on the idea of [Lock-Free Deduplication](https://github.com/gilbertchen/duplicacy/wiki/Lock-Free-Deduplication).
 
+'''
+This is a fork with the only difference that it retries 3 times when failing to upload a chunk. This is particularly useful when using Rclone as a destination, as when backuping larger volumes, any error will completely interrupt the process and you will need to start your backup "from scratch". While it doesn't need to re-uplaod existing chunks, it will still go throught them which can take almost an hour everytime on very large backups. Without a retry, a backup of the magnitude of order of 10 to 100tb that would normally take a week to perform, can take up to 10 weeks. It also adds a slight temporisation in the process of uploading chunk to try to mitigate the RClone issue
+'''
+
 Our paper explaining the inner workings of Duplicacy has been accepted by [IEEE Transactions on Cloud Computing](https://ieeexplore.ieee.org/document/9310668) and will appear in a future issue this year.  The final draft version is available [here](https://github.com/gilbertchen/duplicacy/blob/master/duplicacy_paper.pdf) for those who don't have IEEE subscriptions. 
 
 This repository hosts source code, design documents, and binary releases of the command line version of Duplicacy.  There is also a Web GUI frontend built for Windows, macOS, and Linux, available from https://duplicacy.com.
