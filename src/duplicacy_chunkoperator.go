@@ -569,7 +569,7 @@ func (operator *ChunkOperator) UploadChunk(threadIndex int, task ChunkTask) bool
 		retries := 3
 		
 		for err != nil && retries > 0 {
-			LOG_ERROR("UPLOAD_CHUNK", "Failed to upload the chunk %s: %v [RETRYING IN 5 SEC / %d left]", chunkID, err, retries)
+			LOG_WARN("UPLOAD_CHUNK", "Failed to upload the chunk %s: %v [RETRYING IN 5 SEC / %d left]", chunkID, err, retries)
 			err = operator.storage.UploadFile(threadIndex, chunkPath, chunk.GetBytes())
 			retries--
 			time.Sleep(5 * time.Second)
